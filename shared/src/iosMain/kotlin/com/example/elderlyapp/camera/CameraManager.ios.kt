@@ -8,7 +8,7 @@ import platform.UIKit.UIImagePickerController
 import platform.UIKit.UIImagePickerControllerSourceType
 
 @Suppress(names = ["EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING"])
-actual class CameraManager actual constructor(onLaunch: () -> Unit) {
+actual class CameraManager actual constructor(private val onLaunch: () -> Unit) {
     actual fun launch() {
         onLaunch()
     }

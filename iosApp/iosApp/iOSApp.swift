@@ -1,7 +1,18 @@
+
+
+import Shared
 import SwiftUI
+
 
 @main
 struct iOSApp: App {
+
+
+    init() {
+        KoinInitializer.shared.start()
+    }
+
+
     var body: some Scene {
         WindowGroup {
             ContentView()

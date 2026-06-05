@@ -32,9 +32,14 @@ actual fun rememberCameraManager(onResult: (SharedImage?) -> Unit): CameraManage
         CameraManager(
             onLaunch = {
                 if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.UIImagePickerControllerSourceTypeCamera)) {
-                    cameraController.sourceType = UIImagePickerControllerSourceType.UIImagePickerControllerSourceTypeCamera
+                    cameraController.sourceType =
+                        UIImagePickerControllerSourceType.UIImagePickerControllerSourceTypeCamera
                     cameraController.delegate = delegate
-                    uiViewController.presentViewController(cameraController, animated = true, completion = null)
+                    uiViewController.presentViewController(
+                        cameraController,
+                        animated = true,
+                        completion = null
+                    )
                 } else {
                     onResult(null)
                 }

@@ -1,5 +1,6 @@
 package com.example.elderlyapp.di
 
+import com.example.elderlyapp.data.AndroidImageStorage
 import com.example.elderlyapp.data.AppDatabase
 import com.example.elderlyapp.data.DatabaseBuilder
 import com.example.elderlyapp.data.ImageStorage
@@ -13,5 +14,5 @@ actual val platformModule = module {
         val builder = DatabaseBuilder(androidContext()).getDatabaseBuilder()
         getRoomDatabase(builder)
     }
-    single { ImageStorage(androidContext()) }
+    single<ImageStorage> { AndroidImageStorage(androidContext()) }
 }

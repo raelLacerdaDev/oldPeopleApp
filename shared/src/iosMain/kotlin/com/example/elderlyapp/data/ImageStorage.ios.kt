@@ -13,9 +13,9 @@ import platform.Foundation.timeIntervalSince1970
 import platform.Foundation.writeToFile
 import platform.UIKit.UIImageJPEGRepresentation
 
-actual class ImageStorage {
+class IosImageStorage : ImageStorage{
     @OptIn(ExperimentalForeignApi::class)
-    actual suspend fun saveImage(sharedImage: SharedImage): String? {
+    override suspend fun saveImage(sharedImage: SharedImage): String? {
         return withContext(Dispatchers.IO) {
             runCatching {
                 val documentDirectory = NSFileManager.defaultManager.URLForDirectory(

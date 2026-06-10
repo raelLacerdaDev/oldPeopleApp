@@ -47,6 +47,12 @@ class MemoryRepository(
         }
     }
 
+    suspend fun deleteById(id: Long): Boolean {
+        return withContext(dispatcher) {
+            memoryDao.deleteById(id) > 0
+        }
+    }
+
     fun getAllMemoriesOrderedByCreationDateDesc() = memoryDao.getAllMemoriesOrderedByCreationDateDesc().map { list ->
         list.map {
             it.toDto()

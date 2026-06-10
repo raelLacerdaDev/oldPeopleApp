@@ -3,6 +3,7 @@ package com.example.elderlyapp.di
 import com.example.elderlyapp.data.AppDatabase
 import com.example.elderlyapp.data.DatabaseBuilder
 import com.example.elderlyapp.data.ImageStorage
+import com.example.elderlyapp.data.IosImageStorage
 import com.example.elderlyapp.data.getRoomDatabase
 import com.example.elderlyapp.data.repositories.MemoryRepository
 import org.koin.core.component.KoinComponent
@@ -15,7 +16,7 @@ actual val platformModule: Module = module {
         val builder = DatabaseBuilder().getDatabaseBuilder()
         getRoomDatabase(builder)
     }
-    single { ImageStorage() }
+    single<ImageStorage> { IosImageStorage() }
 }
 
 object KoinHelper : KoinComponent {

@@ -20,4 +20,7 @@ interface MemoryDao {
     @Query("SELECT * FROM tb_memory ORDER BY creationDate")
     fun getAllMemoriesOrderedByCreationDateAsc(): Flow<List<Memory>>
 
+    @Query("DELETE FROM tb_memory WHERE id = :id")
+    suspend fun deleteById(id: Long): Int
+
 }

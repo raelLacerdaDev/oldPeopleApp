@@ -2,22 +2,30 @@ package com.example.elderlyapp.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.example.elderlyapp.data.dto.MemoryDto
 import com.example.elderlyapp.utilities.loadImageFromPath
+import elderlyapp.shared.generated.resources.Res
+import elderlyapp.shared.generated.resources.delete_24dp_000000_FILL0_wght400_GRAD0_opsz24
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun MemoryCard(
     memory: MemoryDto,
+    onDeleteClick:() -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -32,7 +40,7 @@ fun MemoryCard(
             )
 
             Row(
-                modifier = Modifier.fillMaxWidth().height(150.dp),
+                modifier = Modifier.fillMaxWidth().heightIn(150.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 val objectBitmap = remember(memory.objectPath) { loadImageFromPath(memory.objectPath) }
@@ -42,10 +50,10 @@ fun MemoryCard(
                             bitmap = objectBitmap,
                             contentDescription = "Object",
                             contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
+                            modifier = Modifier.fillMaxSize().clip(CircleShape)
                         )
                     } else {
-                        Text("Erro objeto", modifier = Modifier.align(Alignment.Center))
+                        Text("Error Object", modifier = Modifier.align(Alignment.Center))
                     }
                 }
                 val localBitmap = remember(memory.localPath) { loadImageFromPath(memory.localPath) }
@@ -55,11 +63,19 @@ fun MemoryCard(
                             bitmap = localBitmap,
                             contentDescription = "Local",
                             contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
+                            modifier = Modifier.fillMaxSize().clip(CircleShape)
                         )
                     } else {
-                        Text("Error local", modifier = Modifier.align(Alignment.Center))
+                        Text("Error Local", modifier = Modifier.align(Alignment.Center))
                     }
+                }
+                IconButton(
+                   onClick = onDeleteClick
+                ){
+                    Icon(
+                        painter = painterResource(Res.drawable.delete_24dp_000000_FILL0_wght400_GRAD0_opsz24),
+                        contentDescription = "Delete Memory Button"
+                    )
                 }
             }
         }

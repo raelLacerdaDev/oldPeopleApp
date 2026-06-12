@@ -62,7 +62,7 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
-
+            implementation("org.jetbrains.compose.ui:ui-backhandler:1.11.1")
         }
 
         iosMain.dependencies {
